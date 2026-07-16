@@ -14,45 +14,78 @@ button {
   font: inherit;
 }
 
-.page-header {
-  padding: 22px 20px;
-  text-align: center;
-  background: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
-
-.page-header h1 {
-  margin: 0 0 6px;
-  font-size: clamp(28px, 4vw, 44px);
-}
-
-.page-header p {
-  margin: 0;
-  font-size: 17px;
-  color: #607068;
-}
+/* Main layout */
 
 .activity-layout {
   display: grid;
-  grid-template-columns: minmax(500px, 2fr) minmax(290px, 1fr);
-  gap: 22px;
-  width: min(1450px, 96%);
-  margin: 24px auto;
+  grid-template-columns: 320px minmax(700px, 1fr);
+  align-items: start;
+  gap: 16px;
+  width: min(1500px, 97%);
+  margin: 12px auto;
 }
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Branding */
+
+.page-header {
+  padding: 14px;
+  text-align: left;
+  border-radius: 18px;
+  background: #faf8f2;
+  box-shadow: 0 8px 24px rgba(48, 54, 49, 0.1);
+}
+
+.logo {
+  display: block;
+  width: 72px;
+  height: auto;
+  margin: 0 0 8px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: clamp(26px, 2.2vw, 38px);
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  font-size: 1.05rem;
+  color: #4f5e57;
+}
+
+/* Panels */
 
 .map-panel,
 .name-panel {
-  padding: 20px;
+  min-width: 0;
   border-radius: 18px;
   background: white;
   box-shadow: 0 8px 24px rgba(48, 54, 49, 0.1);
 }
 
+.map-panel {
+  padding: 12px;
+}
+
+.name-panel {
+  padding: 14px;
+}
+
+/* Progress bar */
+
 .progress-row {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   font-weight: 700;
 }
 
@@ -71,6 +104,8 @@ button {
   background: #5f8f6f;
   transition: width 0.3s ease;
 }
+
+/* Map */
 
 .map-board {
   position: relative;
@@ -122,49 +157,53 @@ button {
   position: absolute;
   left: 50%;
   top: 50%;
-  max-width: 155px;
+  max-width: 145px;
   transform: translate(-50%, -50%);
-  padding: 6px 9px;
+  padding: 5px 8px;
   border: 2px solid #315c44;
   border-radius: 9px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
   color: #234632;
-font-size: clamp(8px, 1vw, 13px);
+  font-size: clamp(8px, 0.85vw, 12px);
   font-weight: 800;
   line-height: 1.1;
   text-align: center;
   pointer-events: none;
 }
 
+/* Region-name panel */
+
 .name-panel h2 {
   margin: 0 0 4px;
   text-align: center;
+  font-size: 25px;
 }
 
 .instructions {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: #657269;
   text-align: center;
+  font-size: 14px;
 }
 
 .region-cards {
   display: grid;
-  grid-template-columns: repeat(2, minmax(120px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(135px, 1fr));
+  gap: 8px;
 }
 
 .region-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 9px 10px;
+  min-height: 42px;
+  padding: 7px;
   border: 2px solid #d9d1c2;
-  border-radius: 11px;
+  border-radius: 13px;
   background: #fffdf8;
   cursor: grab;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 800;
   text-align: center;
   transition:
@@ -191,28 +230,36 @@ font-size: clamp(8px, 1vw, 13px);
   display: none;
 }
 
+/* Buttons */
+
 .button-row {
   display: flex;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .button-row button,
 .completion-card button {
   flex: 1;
-  padding: 11px 16px;
+  padding: 10px 14px;
   border: 0;
   border-radius: 10px;
   background: #805936;
   color: white;
   cursor: pointer;
   font-weight: 800;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
 }
 
 .button-row button:hover,
 .completion-card button:hover {
   background: #65442a;
+  transform: translateY(-1px);
 }
+
+/* Incorrect-answer animation */
 
 .wrong-shake {
   animation: wrongShake 0.35s ease;
@@ -232,6 +279,8 @@ font-size: clamp(8px, 1vw, 13px);
     transform: translate(calc(-50% + 7px), -50%);
   }
 }
+
+/* Completion message */
 
 .completion-message {
   position: fixed;
@@ -265,7 +314,8 @@ font-size: clamp(8px, 1vw, 13px);
   font-size: 54px;
 }
 
-/* Turn this class on temporarily while positioning zones. */
+/* Developer and debug tools */
+
 .debug-zone {
   border-color: rgba(0, 0, 0, 0.45);
   background: rgba(255, 255, 255, 0.42);
@@ -282,9 +332,38 @@ font-size: clamp(8px, 1vw, 13px);
   font-weight: 900;
 }
 
-@media (max-width: 950px) {
+.developer-zone {
+  cursor: pointer;
+}
+
+.selected-zone {
+  z-index: 20;
+  border-color: #d52b1e !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow:
+    0 0 0 4px rgba(213, 43, 30, 0.28),
+    0 0 18px rgba(213, 43, 30, 0.5);
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
   .activity-layout {
     grid-template-columns: 1fr;
+  }
+
+  .control-panel {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: start;
+  }
+
+  .page-header {
+    text-align: center;
+  }
+
+  .logo {
+    margin: 0 auto 8px;
   }
 
   .region-cards {
@@ -292,27 +371,61 @@ font-size: clamp(8px, 1vw, 13px);
   }
 }
 
-@media (max-width: 600px) {
+/* Smaller tablets */
+
+@media (max-width: 750px) {
   .activity-layout {
     width: 100%;
-    margin: 12px auto;
+    margin: 8px auto;
   }
 
+  .control-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header,
   .map-panel,
   .name-panel {
-    padding: 12px;
     border-radius: 0;
   }
 
   .region-cards {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phones */
+
+@media (max-width: 480px) {
+  .page-header,
+  .map-panel,
+  .name-panel {
+    padding: 12px;
+  }
+
+  .logo {
+    width: 68px;
+  }
+
+  .page-header h1 {
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .name-panel h2 {
+    font-size: 23px;
+  }
+
+  .region-card {
+    min-height: 42px;
+    font-size: 12px;
   }
 
   .placed-label {
     padding: 3px 5px;
     font-size: 8px;
   }
-}
-.developer-zone {
-  cursor: pointer;
 }

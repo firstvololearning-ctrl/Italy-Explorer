@@ -11,12 +11,40 @@
 
 <body>
 
-  <header class="page-header">
-    <h1>Match the Italian Regions</h1>
-    <p>Drag each region name to its location on the map.</p>
-  </header>
-
   <main class="activity-layout">
+
+    <aside class="control-panel">
+
+      <header class="page-header">
+        <img
+          src="icons/logo.png"
+          alt="First Volo Learning"
+          class="logo"
+        >
+
+        <h1>Italy Map Activities</h1>
+
+        <p class="subtitle">
+          Discover the Regions of Italy
+        </p>
+      </header>
+
+      <section class="name-panel">
+        <h2>Region Names</h2>
+
+        <p class="instructions">
+          Drag a name onto the correct colored region.
+        </p>
+
+        <div id="regionCards" class="region-cards"></div>
+
+        <div class="button-row">
+          <button id="shuffleButton" type="button">Shuffle</button>
+          <button id="resetButton" type="button">Reset</button>
+        </div>
+      </section>
+
+    </aside>
 
     <section class="map-panel">
       <div class="progress-row">
@@ -30,28 +58,13 @@
       <div id="mapBoard" class="map-board">
         <img
           id="italyMap"
-        src="assets/maps/italy.png"
+          src="assets/maps/italy.png"
           alt="Map of the regions of Italy"
         >
 
         <div id="dropZones" class="drop-zones"></div>
       </div>
     </section>
-
-    <aside class="name-panel">
-      <h2>Region Names</h2>
-
-      <p class="instructions">
-        Drag a name onto the correct colored region.
-      </p>
-
-      <div id="regionCards" class="region-cards"></div>
-
-      <div class="button-row">
-        <button id="shuffleButton" type="button">Shuffle</button>
-        <button id="resetButton" type="button">Reset</button>
-      </div>
-    </aside>
 
   </main>
 
@@ -63,6 +76,10 @@
       <button id="playAgainButton" type="button">Play Again</button>
     </div>
   </div>
+
+  <script src="data/italy-data.js"></script>
+  <script src="script.js"></script>
+</body>
 
 <script src="data/italy-data.js"></script>
 <script src="script.js"></script>
