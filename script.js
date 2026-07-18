@@ -259,37 +259,37 @@ const musicByRegion = {
     {
       title: "'O sole mio",
       recording:
-        "Featured recording: Luciano Pavarotti",
+          "Featured recording: Enrico Caruso",
       description:
         "One of the world's best-known Neapolitan songs and an enduring example of Naples's vocal tradition.",
       youtube:
-        "https://www.youtube.com/results?search_query=Luciano+Pavarotti+%27O+sole+mio+official"
+         "https://www.youtube.com/results?search_query=Enrico+Caruso+O+sole+mio"
     },
 
     {
       title: "Torna a Surriento",
       recording:
-        "Featured recording: Luciano Pavarotti",
+          "Featured recording: Enrico Caruso",
       description:
         "A beloved Neapolitan classic inspired by Sorrento and the beauty of its coastal setting.",
       youtube:
-        "https://www.youtube.com/results?search_query=Luciano+Pavarotti+Torna+a+Surriento+official"
+        "https://www.youtube.com/results?search_query=Enrico+Caruso+Torna+a+Surriento"
     },
 
     {
       title: "Santa Lucia",
       recording:
-        "Featured recording: Luciano Pavarotti",
+          "Featured recording: Enrico Caruso",
       description:
         "A celebrated Neapolitan song connected with Naples's historic Santa Lucia waterfront.",
       youtube:
-        "https://www.youtube.com/results?search_query=Luciano+Pavarotti+Santa+Lucia+official"
+         "https://www.youtube.com/results?search_query=Enrico+Caruso+Santa+Lucia"
     },
 
     {
       title: "Funiculì, Funiculà",
       recording:
-        "Featured recording: Luciano Pavarotti",
+          "Featured recording: Enrico Caruso",
       description:
         "Written in 1880 to celebrate the funicular railway that once carried visitors up Mount Vesuvius.",
       youtube:
