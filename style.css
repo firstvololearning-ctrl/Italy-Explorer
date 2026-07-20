@@ -2117,3 +2117,94 @@ transform: scale(1);
 .tourism-link-section small span {
   display: block;
 }
+/* ========================================
+   ABOUT MODAL
+   ======================================== */
+
+.about-link {
+  display: inline-block;
+  margin: 10px auto 0;
+  color: #274b84;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.about-link:hover {
+  color: #1e3d6d;
+}
+
+.about-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(20,32,48,.72);
+}
+
+.about-modal[hidden]{
+  display:none;
+}
+
+.about-card{
+  position:relative;
+  width:min(900px,95vw);
+  max-height:90vh;
+  overflow-y:auto;
+
+  padding:34px;
+
+  border-radius:22px;
+  background:white;
+  box-shadow:0 18px 55px rgba(0,0,0,.3);
+}
+
+.about-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#edf2f8;
+
+  font-size:2rem;
+  color:#274b84;
+
+  cursor:pointer;
+}
+
+.about-card h2{
+  margin-top:0;
+  color:#274b84;
+}
+
+.about-card h3{
+  margin-top:28px;
+  color:#805936;
+}
+
+.about-card ul{
+  margin-top:8px;
+  margin-bottom:18px;
+}
+
+.about-footer{
+  margin-top:34px;
+  padding-top:18px;
+  border-top:1px solid #ddd;
+  text-align:center;
+  color:#666;
+  font-size:.9rem;
+}
+
+.about-footer a{
+  color:#274b84;
+  font-weight:700;
+}

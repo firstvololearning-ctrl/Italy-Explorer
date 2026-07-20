@@ -121,7 +121,13 @@
           </a>
 
         </div>
-
+<button
+  id="aboutButton"
+  class="about-link"
+  type="button"
+>
+  ℹ️ About Italy Explorer
+</button>
       </header>
 
       <section class="name-panel">
@@ -393,9 +399,162 @@
     aria-hidden="true"
   >
   </div>
+<div
+  id="aboutModal"
+  class="about-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="aboutModalTitle"
+  hidden
+>
 
-  <script src="data/italy-data.js"></script>
-  <script src="script.js"></script>
+  <div class="about-card">
+
+    <button
+      id="closeAbout"
+      class="about-close"
+      type="button"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <h2 id="aboutModalTitle">
+      🇮🇹 About Italy Explorer
+    </h2>
+<p>
+  Italy Explorer is an interactive educational website that helps learners explore Italy through geography, culture, music, food, landmarks, and influential people.
+</p>
+
+<h3>🗺️ Region Match</h3>
+
+<p>
+  Students drag each Italian region to its correct location on the map.
+</p>
+
+<p>
+  <strong>After each correct match, students discover:</strong>
+</p>
+
+<ul>
+  <li>Regione / Region</li>
+  <li>Storia e cultura / Historic &amp; Cultural Highlight</li>
+  <li>Lingue e dialetti / Languages &amp; Dialects</li>
+  <li>Sito ufficiale del turismo / Official Tourism Website</li>
+</ul>
+
+<h3>🏛️ Landmarks</h3>
+
+<p>
+  Students match famous Italian landmarks to the regions where they are located.
+</p>
+
+<p>
+  <strong>After each correct match, students discover:</strong>
+</p>
+
+<ul>
+  <li>Monumento / Landmark</li>
+  <li>Storia e cultura / Historic &amp; Cultural Highlight</li>
+  <li>Lingue e dialetti / Languages &amp; Dialects</li>
+  <li>Sito ufficiale del turismo / Official Tourism Website</li>
+</ul>
+
+<h3>🍝 Regional Specialties</h3>
+
+<p>
+  Students match authentic regional foods to the regions where they originated.
+</p>
+
+<p>
+  <strong>After each correct match, students discover:</strong>
+</p>
+
+<ul>
+  <li>Specialità regionale / Regional Specialty</li>
+  <li>Storia e cultura / Historic &amp; Cultural Highlight</li>
+  <li>Lingue e dialetti / Languages &amp; Dialects</li>
+  <li>Link per saperne di più / Link to Learn More</li>
+</ul>
+
+<h3>🎵 Traditional Music</h3>
+
+<p>
+  Students select a region on the map to explore its musical traditions.
+</p>
+
+<p>
+  <strong>Each region includes:</strong>
+</p>
+
+<ul>
+  <li>Canzone tradizionale / Traditional Song</li>
+  <li>Registrazione consigliata / Featured Recording</li>
+  <li>Breve descrizione culturale / Brief Cultural Description</li>
+  <li>Link YouTube / YouTube Links</li>
+</ul>
+
+<h3>🎤 Contemporary Music</h3>
+
+<p>
+  Students discover artists connected to different Italian regions and explore today’s Italian music scene.
+</p>
+
+<p>
+  <strong>Each artist includes:</strong>
+</p>
+
+<ul>
+  <li>Artista / Artist</li>
+  <li>Canzone / Song</li>
+  <li>Breve descrizione / Brief Description</li>
+  <li>Link YouTube / YouTube Links</li>
+</ul>
+
+<h3>👥 Notable Italians</h3>
+
+<p>
+  Students discover influential Italians from science, art, literature, music, sports, politics, and more.
+</p>
+
+<p>
+  <strong>Each profile includes:</strong>
+</p>
+
+<ul>
+  <li>Nome / Name</li>
+  <li>Regione / Region</li>
+  <li>Ambito / Field</li>
+  <li>Breve descrizione / Brief Description</li>
+</ul>
+
+<hr>
+
+<h3>Created by First Volo Learning</h3>
+
+<p>
+  Italy Explorer was designed to help learners explore Italy’s language, geography, music, landmarks, food, and culture through interactive activities.
+</p>
+
+<p>
+  🌐
+  <a
+    href="https://firstvololearning.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    firstvololearning.com
+  </a>
+</p>
+
+<p>
+  Version 1.0 • © First Volo Learning
+</p>
+  </div>
+
+</div>
+<script src="data/italy-data.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

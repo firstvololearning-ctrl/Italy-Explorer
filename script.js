@@ -1471,3 +1471,57 @@ setGameMode(
     ? requestedMode
     : "regions"
 );
+/* ========================================
+   ABOUT MODAL
+   ======================================== */
+
+const aboutButton = document.querySelector("#aboutButton");
+const aboutModal = document.querySelector("#aboutModal");
+const closeAbout = document.querySelector("#closeAbout");
+
+function openAboutModal() {
+  aboutModal.hidden = false;
+  document.body.style.overflow = "hidden";
+  closeAbout.focus();
+}
+
+function closeAboutModal() {
+  if (aboutModal.hidden) {
+    return;
+  }
+
+  aboutModal.hidden = true;
+  document.body.style.overflow = "";
+  aboutButton.focus();
+}
+
+aboutButton.addEventListener(
+  "click",
+  openAboutModal
+);
+
+closeAbout.addEventListener(
+  "click",
+  closeAboutModal
+);
+
+aboutModal.addEventListener(
+  "click",
+  (event) => {
+    if (event.target === aboutModal) {
+      closeAboutModal();
+    }
+  }
+);
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+    if (
+      event.key === "Escape" &&
+      !aboutModal.hidden
+    ) {
+      closeAboutModal();
+    }
+  }
+);
