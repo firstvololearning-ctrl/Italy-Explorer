@@ -342,11 +342,11 @@ if (
     link.href =
       foodLinks[region.food.name] || FOOD_FALLBACK;
 
-    italianText.textContent =
-      "Scopri questo piatto";
+italianText.textContent =
+  "Scopri di più sulla cucina italiana";
 
-    englishText.textContent =
-      "Discover this dish";
+englishText.textContent =
+  "Explore Italian Food & Wine";
 articleLink.hidden = true;
   } else if (gameMode === "regions") {
 

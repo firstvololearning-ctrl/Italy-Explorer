@@ -45,7 +45,9 @@ button {
   flex-direction: column;
   gap: 12px;
 }
-
+.tourism-link[hidden] {
+  display: none !important;
+}
 /* =========================
    Branding
    ========================= */
