@@ -261,7 +261,7 @@ const italyData = [
       image: "assets/foods/regionalfood-03.png"
     },
     landmark: {
-      name: "Mount Vesuvius",
+      name: "Vesuvio",
       image: "assets/landmarks/landmark-19.png"
     },
     language: "Neapolitan is widely spoken.",
@@ -353,7 +353,7 @@ const italyData = [
       image: "assets/foods/regionalfood-09.png"
     },
     landmark: {
-      name: "Mount Etna",
+      name: "Etna",
       image: "assets/landmarks/landmark-06.png"
     },
     language: "Sicilian is widely spoken.",
