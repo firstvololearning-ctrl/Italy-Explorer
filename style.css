@@ -149,12 +149,14 @@ button {
 }
 
 .mode-button.active {
-  background: #2A5CAA;
+background: #faf8f2 !important;
+
   border-color: #2A5CAA;
-  color: #fff;
+  color: #2A5CAA;
 }
+
 .mode-button.active .english-support {
-  color: rgba(255,255,255,.92);
+  color: #5a7299;
   opacity: 1;
 }
 .mode-button {
@@ -2572,8 +2574,10 @@ transform: scale(1);
   }
 }
 /* =========================================================
-   LEONARDO DA VINCI QUOTE — FIXED
+   LEONARDO DA VINCI QUOTE
 ========================================================= */
+
+/* ---------- Desktop ---------- */
 
 .leonardo-quote {
   display: grid !important;
@@ -2585,15 +2589,12 @@ transform: scale(1);
   max-width: none !important;
   margin: 10px auto 14px !important;
   padding: 10px 16px !important;
+  box-sizing: border-box !important;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 250, 241, 0.98),
-    rgba(252, 238, 220, 0.96)
-  ) !important;
+  /* Match the Italy Explorer header */
+  background: #faf8f2 !important;
 
-  border: 1px solid rgba(142, 95, 52, 0.18) !important;
-  border-left: 4px solid #274b84 !important;
+  border: 1px solid rgba(39, 75, 132, 0.22) !important;
   border-radius: 16px !important;
 
   box-shadow:
@@ -2618,12 +2619,8 @@ transform: scale(1);
 }
 
 .leonardo-quote-text {
-  display: block !important;
   width: 100% !important;
   min-width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
 }
 
 .leonardo-quote-italian,
@@ -2643,7 +2640,6 @@ transform: scale(1);
 .leonardo-quote-english {
   margin-top: 5px !important;
   font-size: 14px !important;
-  font-weight: 400 !important;
   line-height: 1.25 !important;
 }
 
@@ -2669,11 +2665,10 @@ transform: scale(1);
 }
 
 
-/* =========================================================
-   TABLET
-========================================================= */
+/* ---------- Tablet ---------- */
 
 @media (max-width: 900px) {
+
   .leonardo-quote {
     grid-template-columns: 75px minmax(0, 1fr) !important;
     gap: 10px !important;
@@ -2705,18 +2700,18 @@ transform: scale(1);
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* ---------- Mobile ---------- */
 
 @media (max-width: 600px) {
+
   .leonardo-quote {
     grid-template-columns: 58px minmax(0, 1fr) !important;
     gap: 8px !important;
+
     width: calc(100% - 12px) !important;
     margin: 6px auto 10px !important;
     padding: 7px !important;
-    border-left-width: 3px !important;
+
     border-radius: 12px !important;
   }
 
@@ -2749,7 +2744,6 @@ transform: scale(1);
     white-space: normal !important;
   }
 }
-
 /* =========================================================
    HINT SELECTION + POPUP
    ========================================================= */
