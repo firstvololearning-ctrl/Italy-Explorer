@@ -28,6 +28,32 @@ const foodLinks = {
   "Culurgiones": FOOD_FALLBACK
 };
 const regions = italyData;
+function getEnglishRegionName(italianName) {
+  const englishRegionNames = {
+    "Valle d'Aosta": "Aosta Valley",
+    Piemonte: "Piedmont",
+    Liguria: "Liguria",
+    Lombardia: "Lombardy",
+    "Trentino-Alto Adige": "Trentino-Alto Adige",
+    Veneto: "Veneto",
+    "Friuli-Venezia Giulia": "Friuli-Venezia Giulia",
+    "Emilia-Romagna": "Emilia-Romagna",
+    Toscana: "Tuscany",
+    Umbria: "Umbria",
+    Marche: "Marche",
+    Lazio: "Lazio",
+    Abruzzo: "Abruzzo",
+    Molise: "Molise",
+    Campania: "Campania",
+    Puglia: "Apulia",
+    Basilicata: "Basilicata",
+    Calabria: "Calabria",
+    Sicilia: "Sicily",
+    Sardegna: "Sardinia"
+  };
+
+  return englishRegionNames[italianName] || italianName;
+}
 /* =========================================================
    ADDITIONAL LANDMARKS & LANDSCAPES
    ========================================================= */
@@ -2099,52 +2125,61 @@ const aboutButton = document.querySelector("#aboutButton");
 const aboutModal = document.querySelector("#aboutModal");
 const closeAbout = document.querySelector("#closeAbout");
 
-function openAboutModal() {
-  aboutModal.hidden = false;
-  document.body.style.overflow = "hidden";
-  closeAbout.focus();
+if (aboutButton && aboutModal && closeAbout) {
+  function openAboutModal() {
+    aboutModal.hidden = false;
+    document.body.style.overflow = "hidden";
+    closeAbout.focus();
+  }
+
+  function closeAboutModal() {
+    if (aboutModal.hidden) {
+      return;
+    }
+
+    aboutModal.hidden = true;
+    document.body.style.overflow = "";
+    aboutButton.focus();
+  }
+
+  aboutButton.addEventListener(
+    "click",
+    openAboutModal
+  );
+
+  closeAbout.addEventListener(
+    "click",
+    closeAboutModal
+  );
+
+  aboutModal.addEventListener(
+    "click",
+    (event) => {
+      if (event.target === aboutModal) {
+        closeAboutModal();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        event.key === "Escape" &&
+        !aboutModal.hidden
+      ) {
+        closeAboutModal();
+      }
+    }
+  );
+} else {
+  console.error("About modal elements were not found.", {
+    aboutButton,
+    aboutModal,
+    closeAbout
+  });
 }
 
-function closeAboutModal() {
-  if (aboutModal.hidden) {
-    return;
-  }
-
-  aboutModal.hidden = true;
-  document.body.style.overflow = "";
-  aboutButton.focus();
-}
-
-aboutButton.addEventListener(
-  "click",
-  openAboutModal
-);
-
-closeAbout.addEventListener(
-  "click",
-  closeAboutModal
-);
-
-aboutModal.addEventListener(
-  "click",
-  (event) => {
-    if (event.target === aboutModal) {
-      closeAboutModal();
-    }
-  }
-);
-
-document.addEventListener(
-  "keydown",
-  (event) => {
-    if (
-      event.key === "Escape" &&
-      !aboutModal.hidden
-    ) {
-      closeAboutModal();
-    }
-  }
-);
 
 /* ========================================
    HINT POPUP
