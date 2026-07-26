@@ -272,15 +272,28 @@ button {
   pointer-events: none;
 }
 
+.drop-zone.correct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 2px;
+}
+
 .placed-landmark {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 105px;
-  max-width: 90%;
-  height: auto;
-  transform: translate(-50%, -50%);
+  position: static;
+  transform: none;
   pointer-events: none;
+  object-fit: contain;
+}
+
+.placed-landmark:first-child {
+  width: 60%;
+  flex-basis: 100%;
+}
+
+.placed-landmark:not(:first-child) {
+  width: 28%;
 }
 
 /* =========================

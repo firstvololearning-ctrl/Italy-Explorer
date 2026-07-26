@@ -28,32 +28,100 @@ const foodLinks = {
   "Culurgiones": FOOD_FALLBACK
 };
 const regions = italyData;
+/* =========================================================
+   ADDITIONAL LANDMARKS & LANDSCAPES
+   ========================================================= */
 
-const regionNamesEnglish = {
-  "Valle d'Aosta": "Aosta Valley",
-  Piemonte: "Piedmont",
-  Liguria: "Liguria",
-  Lombardia: "Lombardy",
-  "Trentino-Alto Adige": "Trentino-South Tyrol",
-  Veneto: "Veneto",
-  "Friuli-Venezia Giulia": "Friuli-Venezia Giulia",
-  "Emilia-Romagna": "Emilia-Romagna",
-  Toscana: "Tuscany",
-  Umbria: "Umbria",
-  Marche: "Marche",
-  Lazio: "Lazio",
-  Abruzzo: "Abruzzo",
-  Molise: "Molise",
-  Campania: "Campania",
-  Puglia: "Apulia",
-  Basilicata: "Basilicata",
-  Calabria: "Calabria",
-  Sicilia: "Sicily",
-  Sardegna: "Sardinia"
-};
+const additionalLandmarks = [
+  {
+    id: "campania-amalfi-coast",
+    region: "Campania",
+    name: "Amalfi Coast",
+    image: "assets/landmarks/landmark-28.png"
+  },
+  {
+    id: "sardegna-cala-goloritze",
+    region: "Sardegna",
+    name: "Cala Goloritzé",
+    image: "assets/landmarks/landmark-29.png"
+  },
+  {
+    id: "sicilia-scala-dei-turchi",
+    region: "Sicilia",
+    name: "Scala dei Turchi",
+    image: "assets/landmarks/landmark-30.png"
+  },
+  {
+    id: "toscana-val-dorcia",
+    region: "Toscana",
+    name: "Val d’Orcia",
+    image: "assets/landmarks/landmark-31.png"
+  },
+  {
+    id: "valle-aosta-gran-paradiso",
+    region: "Valle d'Aosta",
+    name: "Gran Paradiso",
+    image: "assets/landmarks/landmark-32.png"
+  },
+  {
+    id: "sicilia-stromboli",
+    region: "Sicilia",
+    name: "Stromboli",
+    image: "assets/landmarks/landmark-33.png"
+  },
+  {
+    id: "emilia-romagna-po-delta",
+    region: "Emilia-Romagna",
+    name: "Po Delta",
+    image: "assets/landmarks/landmark-34.png"
+  }
+];
 
-function getEnglishRegionName(regionName) {
-  return regionNamesEnglish[regionName] || regionName;
+function getRegionByName(regionName) {
+  return regions.find(
+    (region) => region.region === regionName
+  );
+}
+
+function getAllLandmarks() {
+  const originalLandmarks = regions.map((region) => ({
+    id: `region-landmark-${region.id}`,
+    regionId: region.id,
+    region: region.region,
+    name: region.landmark.name,
+    image: region.landmark.image
+  }));
+
+  const extraLandmarks = additionalLandmarks
+    .map((landmark) => {
+      const matchingRegion =
+        getRegionByName(landmark.region);
+
+      if (!matchingRegion) {
+        console.error(
+          `Region not found for ${landmark.name}: ${landmark.region}`
+        );
+
+        return null;
+      }
+
+      return {
+        ...landmark,
+        regionId: matchingRegion.id
+      };
+    })
+    .filter(Boolean);
+
+  return [
+    ...originalLandmarks,
+    ...extraLandmarks
+  ];
+}
+
+function getTotalItems() {
+  return gameMode === "landmarks"
+    ? getAllLandmarks().length
+    : regions.length;
 }
 /* =========================================================
    OFFICIAL TOURISM LINKS
@@ -858,6 +926,121 @@ function createCards() {
     return;
   }
 
+  /* =======================================================
+     LANDMARKS & LANDSCAPES
+     ======================================================= */
+
+  if (gameMode === "landmarks") {
+    shuffle(getAllLandmarks()).forEach((item) => {
+      const card =
+        document.createElement("div");
+
+      card.className = "region-card";
+      card.draggable = true;
+
+      card.dataset.itemId = item.id;
+      card.dataset.regionId =
+        String(item.regionId);
+
+      card.tabIndex = 0;
+      card.setAttribute("role", "button");
+
+      const selectCard = () => {
+        cardContainer
+          .querySelectorAll(".region-card")
+          .forEach((otherCard) => {
+            otherCard.classList.remove(
+              "selected-card"
+            );
+          });
+
+        card.classList.add(
+          "selected-card"
+        );
+
+        selectedCard = item;
+      };
+
+      card.addEventListener(
+        "click",
+        selectCard
+      );
+
+      card.addEventListener(
+        "keydown",
+        (event) => {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            selectCard();
+          }
+        }
+      );
+
+      const image =
+        document.createElement("img");
+
+      image.className = "card-image";
+      image.src = item.image;
+      image.alt = item.name;
+      image.draggable = false;
+
+      const label =
+        document.createElement("span");
+
+      label.className = "card-label";
+      label.textContent = item.name;
+
+      card.append(image, label);
+
+      card.addEventListener(
+        "dragstart",
+        (event) => {
+          selectCard();
+
+          event.dataTransfer.effectAllowed =
+            "move";
+
+          event.dataTransfer.setData(
+            "application/json",
+            JSON.stringify({
+              itemId: item.id,
+              regionId: item.regionId
+            })
+          );
+
+          card.classList.add(
+            "dragging"
+          );
+        }
+      );
+
+      card.addEventListener(
+        "drag",
+        handleDragAutoScroll
+      );
+
+      card.addEventListener(
+        "dragend",
+        () => {
+          card.classList.remove(
+            "dragging"
+          );
+        }
+      );
+
+      cardContainer.appendChild(card);
+    });
+
+    return;
+  }
+
+  /* =======================================================
+     REGIONS AND FOODS
+     ======================================================= */
+
   shuffle(regions).forEach((region) => {
     const card =
       document.createElement("div");
@@ -874,31 +1057,38 @@ function createCards() {
       cardContainer
         .querySelectorAll(".region-card")
         .forEach((otherCard) => {
-          otherCard.classList.remove("selected-card");
+          otherCard.classList.remove(
+            "selected-card"
+          );
         });
 
-      card.classList.add("selected-card");
+      card.classList.add(
+        "selected-card"
+      );
+
       selectedCard = region;
     };
 
-    card.addEventListener("click", selectCard);
+    card.addEventListener(
+      "click",
+      selectCard
+    );
 
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        selectCard();
+    card.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+          selectCard();
+        }
       }
-    });
+    );
 
-    const visualMode =
-      gameMode === "landmarks" ||
-      gameMode === "foods";
-
-    if (visualMode) {
-      const item =
-        gameMode === "landmarks"
-          ? region.landmark
-          : region.food;
+    if (gameMode === "foods") {
+      const item = region.food;
 
       const image =
         document.createElement("img");
@@ -916,16 +1106,34 @@ function createCards() {
 
       card.append(image, label);
     } else {
-      const italianName = document.createElement("strong");
-      italianName.className = "region-name-italian";
-      italianName.textContent = region.region;
+      const italianName =
+        document.createElement("strong");
 
-      const englishName = document.createElement("span");
-      englishName.className = "region-name-english";
-      englishName.textContent = getEnglishRegionName(region.region);
+      italianName.className =
+        "region-name-italian";
 
-      card.classList.add("bilingual-region-card");
-      card.append(italianName, englishName);
+      italianName.textContent =
+        region.region;
+
+      const englishName =
+        document.createElement("span");
+
+      englishName.className =
+        "region-name-english";
+
+      englishName.textContent =
+        getEnglishRegionName(
+          region.region
+        );
+
+      card.classList.add(
+        "bilingual-region-card"
+      );
+
+      card.append(
+        italianName,
+        englishName
+      );
     }
 
     card.addEventListener(
@@ -941,7 +1149,9 @@ function createCards() {
           String(region.id)
         );
 
-        card.classList.add("dragging");
+        card.classList.add(
+          "dragging"
+        );
       }
     );
 
@@ -953,7 +1163,9 @@ function createCards() {
     card.addEventListener(
       "dragend",
       () => {
-        card.classList.remove("dragging");
+        card.classList.remove(
+          "dragging"
+        );
       }
     );
 
@@ -974,7 +1186,8 @@ function createZones() {
       );
 
     zone.className = "drop-zone";
-    zone.dataset.id = String(region.id);
+    zone.dataset.id =
+      String(region.id);
 
     zone.dataset.debug =
       String(index + 1).padStart(
@@ -982,8 +1195,13 @@ function createZones() {
         "0"
       );
 
-    zone.style.left = `${region.x}%`;
-    zone.style.top = `${region.y}%`;
+    zone.dataset.placedCount = "0";
+
+    zone.style.left =
+      `${region.x}%`;
+
+    zone.style.top =
+      `${region.y}%`;
 
     if (gameMode === "music") {
       zone.type = "button";
@@ -1077,6 +1295,58 @@ function createZones() {
         zone.classList.remove(
           "drag-over"
         );
+
+        /* ===============================================
+           LANDMARKS & LANDSCAPES
+           =============================================== */
+
+        if (gameMode === "landmarks") {
+          const transferredData =
+            event.dataTransfer.getData(
+              "application/json"
+            );
+
+          if (!transferredData) {
+            showWrong(zone);
+            return;
+          }
+
+          let data;
+
+          try {
+            data =
+              JSON.parse(
+                transferredData
+              );
+          } catch (error) {
+            console.error(
+              "Could not read landmark drag data:",
+              error
+            );
+
+            showWrong(zone);
+            return;
+          }
+
+          if (
+            String(data.regionId) ===
+            String(region.id)
+          ) {
+            placeLandmarkCorrect(
+              zone,
+              region,
+              data.itemId
+            );
+          } else {
+            showWrong(zone);
+          }
+
+          return;
+        }
+
+        /* ===============================================
+           REGIONS AND FOODS
+           =============================================== */
 
         const droppedId =
           event.dataTransfer.getData(
@@ -1212,7 +1482,83 @@ function moveSelectedZone(event) {
 
   printCoordinates(region);
 }
+function placeLandmarkCorrect(
+  zone,
+  region,
+  itemId
+) {
+  const item = getAllLandmarks().find(
+    (landmark) => landmark.id === itemId
+  );
 
+  if (!item) {
+    console.error(
+      `Landmark not found: ${itemId}`
+    );
+    return;
+  }
+
+  const matchingCard =
+    cardContainer.querySelector(
+      `.region-card[data-item-id="${itemId}"]`
+    );
+
+  if (!matchingCard) {
+    return;
+  }
+
+  /*
+   * Show the most recently placed item.
+   * Do not block this zone afterward:
+   * some regions have multiple landmarks.
+   */
+  zone.insertAdjacentHTML(
+  "beforeend",
+  `
+  <img
+    class="placed-landmark"
+    src="${item.image}"
+    alt="${item.name}"
+    title="${item.name}"
+  >
+`
+);
+
+  zone.classList.add("correct");
+  zone.classList.remove(
+    "debug-zone",
+    "selected-zone"
+  );
+
+  const placedCount =
+    Number(
+      zone.dataset.placedCount || 0
+    ) + 1;
+
+  zone.dataset.placedCount =
+    String(placedCount);
+
+  matchingCard.remove();
+
+  if (selectedCard?.id === itemId) {
+    selectedCard = null;
+  }
+
+  correctCount += 1;
+
+  updateProgress();
+  showRegionalSpotlight(region);
+
+  if (
+    correctCount ===
+    getAllLandmarks().length
+  ) {
+    window.setTimeout(() => {
+      completionMessage.hidden = false;
+      launchConfetti();
+    }, 400);
+  }
+}
 function placeCorrect(
   zone,
   region
@@ -1244,13 +1590,17 @@ function placeCorrect(
         ? region.landmark
         : region.food;
 
-    zone.innerHTML = `
-      <img
-        class="placed-landmark"
-        src="${item.image}"
-        alt="${item.name}"
-      >
-    `;
+ zone.insertAdjacentHTML(
+  "beforeend",
+  `
+  <img
+    class="placed-landmark"
+    src="${item.image}"
+    alt="${item.name}"
+    title="${item.name}"
+  >
+`
+);
   } else {
     zone.innerHTML = `
       <span class="placed-label">
@@ -1365,17 +1715,17 @@ function showWrong(zone) {
 }
 
 function updateProgress() {
+  const totalItems = getTotalItems();
+
   progressText.innerHTML = `
-    <strong>${correctCount} di ${regions.length} corrette</strong>
-    <span>${correctCount} of ${regions.length} correct</span>
+    <strong>${correctCount} di ${totalItems} corrette</strong>
+    <span>${correctCount} of ${totalItems} correct</span>
   `;
 
   const percentage =
-    (
-      correctCount /
-      regions.length
-    ) *
-    100;
+    totalItems > 0
+      ? (correctCount / totalItems) * 100
+      : 0;
 
   progressFill.style.width =
     `${percentage}%`;
@@ -1409,17 +1759,17 @@ function setGameMode(mode) {
 
   switch (mode) {
     case "landmarks":
-      panelHeading.innerHTML = `
-        <strong>Monumenti</strong>
-        <span>Landmarks</span>
-      `;
+  panelHeading.innerHTML = `
+    <strong>Monumenti e paesaggi</strong>
+    <span>Landmarks & Landscapes</span>
+  `;
 
-      instructions.innerHTML = `
-        <strong>Abbina ogni monumento alla regione corretta.</strong>
-        <span>Match each landmark to the correct region.</span>
-      `;
+  instructions.innerHTML = `
+    <strong>Abbina ogni monumento o paesaggio alla regione corretta.</strong>
+    <span>Match each landmark or landscape to the correct region.</span>
+  `;
 
-      break;
+  break;
 
     case "foods":
       panelHeading.innerHTML = `
@@ -1475,10 +1825,10 @@ function updateCompletionText() {
       italian: "Hai trovato tutte le 20 regioni d'Italia!",
       english: "You matched all 20 Italian regions!"
     },
-    landmarks: {
-      italian: "Hai abbinato tutti i monumenti alle regioni corrette!",
-      english: "You matched every landmark to the correct region!"
-    },
+  landmarks: {
+  italian: "Hai abbinato tutti i monumenti e paesaggi alle regioni corrette!",
+  english: "You matched every landmark and landscape to the correct region!"
+},
     foods: {
       italian: "Hai abbinato tutte le specialità alle regioni corrette!",
       english: "You matched every regional specialty to the correct region!"
@@ -1895,10 +2245,10 @@ function showHint() {
       `This specialty comes from ${getEnglishRegionName(selectedCard.region)}.`;
   } else if (gameMode === "landmarks") {
     hintItalian.textContent =
-      `Questo monumento si trova nella regione ${selectedCard.region}.`;
+        `Questo luogo si trova nella regione ${selectedCard.region}.`;
 
     hintEnglish.textContent =
-      `This landmark is located in ${getEnglishRegionName(selectedCard.region)}.`;
+      `This landmark or landscape is located in ${getEnglishRegionName(selectedCard.region)}.`;
   } else {
     const hint = regionHints[selectedCard.region];
 
