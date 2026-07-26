@@ -149,10 +149,20 @@ button {
 }
 
 .mode-button.active {
-background: #faf8f2 !important;
+  background: #faf8f2 !important;
+  border: 3px solid #2A5CAA !important;
+  color: #2A5CAA !important;
 
-  border-color: #2A5CAA;
-  color: #2A5CAA;
+  box-shadow: 0 4px 12px rgba(42, 92, 170, 0.12);
+}
+
+.mode-button.active .mode-icon {
+  color: #2A5CAA !important;
+}
+
+.mode-button.active .english-support {
+  color: #5a7299 !important;
+  opacity: 1;
 }
 
 .mode-button.active .english-support {
@@ -2580,88 +2590,87 @@ transform: scale(1);
 /* ---------- Desktop ---------- */
 
 .leonardo-quote {
-  display: grid !important;
-  grid-template-columns: 90px minmax(0, 1fr) !important;
-  align-items: center !important;
-  gap: 14px !important;
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
 
-  width: calc(100% - 24px) !important;
-  max-width: none !important;
-  margin: 10px auto 14px !important;
-  padding: 10px 16px !important;
-  box-sizing: border-box !important;
+  width: calc(100% - 24px);
+  max-width: none;
+  margin: 10px auto 14px;
+  padding: 10px 16px;
+  box-sizing: border-box;
 
-  /* Match the Italy Explorer header */
-  background: #faf8f2 !important;
+  background: #faf8f2;
 
-  border: 1px solid rgba(39, 75, 132, 0.22) !important;
-  border-radius: 16px !important;
+  border: 1px solid rgba(39, 75, 132, 0.22);
+  border-radius: 16px;
 
   box-shadow:
     0 8px 20px rgba(39, 75, 132, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .leonardo-quote-image {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 90px !important;
-  min-width: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  min-width: 0;
 }
 
 .leonardo-quote-image img {
-  display: block !important;
-  width: 85px !important;
-  max-width: 85px !important;
-  height: auto !important;
-  object-fit: contain !important;
+  display: block;
+  width: 85px;
+  max-width: 85px;
+  height: auto;
+  object-fit: contain;
 }
 
 .leonardo-quote-text {
-  width: 100% !important;
-  min-width: 0 !important;
+  width: 100%;
+  min-width: 0;
 }
 
 .leonardo-quote-italian,
 .leonardo-quote-english {
-  margin: 0 !important;
-  color: #1f2835 !important;
+  margin: 0;
+  color: #1f2835;
 }
 
 .leonardo-quote-italian {
-  font-size: 15px !important;
-  font-weight: 800 !important;
-  line-height: 1.15 !important;
-  letter-spacing: -0.02em !important;
-  white-space: nowrap !important;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .leonardo-quote-english {
-  margin-top: 5px !important;
-  font-size: 14px !important;
-  line-height: 1.25 !important;
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.25;
 }
 
 .leonardo-quote-source {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 2px !important;
-  margin-top: 5px !important;
-  color: #27364b !important;
-  font-size: 12px !important;
-  line-height: 1.2 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 5px;
+  color: #27364b;
+  font-size: 12px;
+  line-height: 1.2;
 }
 
 .leonardo-quote-source cite {
-  color: #173158 !important;
-  font-size: 13px !important;
-  font-style: normal !important;
-  font-weight: 800 !important;
+  color: #173158;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 800;
 }
 
 .richter-reference {
-  white-space: nowrap !important;
+  white-space: nowrap;
 }
 
 
@@ -2670,32 +2679,32 @@ transform: scale(1);
 @media (max-width: 900px) {
 
   .leonardo-quote {
-    grid-template-columns: 75px minmax(0, 1fr) !important;
-    gap: 10px !important;
-    padding: 9px 11px !important;
+    grid-template-columns: 75px minmax(0, 1fr);
+    gap: 10px;
+    padding: 9px 11px;
   }
 
   .leonardo-quote-image {
-    width: 75px !important;
+    width: 75px;
   }
 
   .leonardo-quote-image img {
-    width: 70px !important;
-    max-width: 70px !important;
+    width: 70px;
+    max-width: 70px;
   }
 
   .leonardo-quote-italian {
-    font-size: 12px !important;
-    white-space: normal !important;
+    font-size: 12px;
+    white-space: normal;
   }
 
   .leonardo-quote-english {
-    font-size: 11px !important;
+    font-size: 11px;
   }
 
   .leonardo-quote-source,
   .leonardo-quote-source cite {
-    font-size: 10px !important;
+    font-size: 10px;
   }
 }
 
@@ -2705,43 +2714,43 @@ transform: scale(1);
 @media (max-width: 600px) {
 
   .leonardo-quote {
-    grid-template-columns: 58px minmax(0, 1fr) !important;
-    gap: 8px !important;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 8px;
 
-    width: calc(100% - 12px) !important;
-    margin: 6px auto 10px !important;
-    padding: 7px !important;
+    width: calc(100% - 12px);
+    margin: 6px auto 10px;
+    padding: 7px;
 
-    border-radius: 12px !important;
+    border-radius: 12px;
   }
 
   .leonardo-quote-image {
-    width: 58px !important;
+    width: 58px;
   }
 
   .leonardo-quote-image img {
-    width: 55px !important;
-    max-width: 55px !important;
+    width: 55px;
+    max-width: 55px;
   }
 
   .leonardo-quote-italian {
-    font-size: 9.5px !important;
-    white-space: normal !important;
+    font-size: 9.5px;
+    white-space: normal;
   }
 
   .leonardo-quote-english {
-    margin-top: 3px !important;
-    font-size: 8.5px !important;
+    margin-top: 3px;
+    font-size: 8.5px;
   }
 
   .leonardo-quote-source,
   .leonardo-quote-source cite {
-    margin-top: 3px !important;
-    font-size: 8px !important;
+    margin-top: 3px;
+    font-size: 8px;
   }
 
   .richter-reference {
-    white-space: normal !important;
+    white-space: normal;
   }
 }
 /* =========================================================
