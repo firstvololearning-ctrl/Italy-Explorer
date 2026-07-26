@@ -14,7 +14,6 @@
 </head>
 
 <body>
-<body>
 
   <!-- Leonardo da Vinci Quote -->
 
@@ -334,6 +333,15 @@
             <span>Reset</span>
           </button>
 
+          <button
+            id="hintButton"
+            class="hint-button"
+            type="button"
+          >
+            <strong>💡 Aiuto</strong>
+            <span>Hint</span>
+          </button>
+
         </div>
 
       </section>
@@ -621,6 +629,35 @@
   </div>
 
 </div>
+
+<div
+  id="hintModal"
+  class="hint-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="hintModalTitle"
+  hidden
+>
+  <div class="hint-modal-card">
+    <button
+      id="closeHintModal"
+      class="hint-modal-close"
+      type="button"
+      aria-label="Chiudi / Close hint"
+    >
+      ×
+    </button>
+
+    <h2 id="hintModalTitle">
+      💡 Aiuto
+      <span>Hint</span>
+    </h2>
+
+    <p id="hintItalian"></p>
+    <p id="hintEnglish" class="hint-english"></p>
+  </div>
+</div>
+
 <script src="data/italy-data.js"></script>
 <script src="script.js"></script>
 

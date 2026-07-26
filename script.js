@@ -446,6 +446,7 @@ function updateTourismLink(region) {
   }
 }
 
+let selectedCard = null;
 let gameMode = "regions";
 let correctCount = 0;
 let selectedZone = null;
@@ -470,6 +471,12 @@ const playAgainButton = document.querySelector(
   "#playAgainButton"
 );
 const gameButtons = document.querySelector("#gameButtons");
+
+const hintButton = document.querySelector("#hintButton");
+const hintModal = document.querySelector("#hintModal");
+const closeHintModalButton = document.querySelector("#closeHintModal");
+const hintItalian = document.querySelector("#hintItalian");
+const hintEnglish = document.querySelector("#hintEnglish");
 
 const activityModeButtons = document.querySelectorAll(
   ".mode-button[data-mode]"
@@ -860,6 +867,29 @@ function createCards() {
     card.dataset.id =
       String(region.id);
 
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+
+    const selectCard = () => {
+      cardContainer
+        .querySelectorAll(".region-card")
+        .forEach((otherCard) => {
+          otherCard.classList.remove("selected-card");
+        });
+
+      card.classList.add("selected-card");
+      selectedCard = region;
+    };
+
+    card.addEventListener("click", selectCard);
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectCard();
+      }
+    });
+
     const visualMode =
       gameMode === "landmarks" ||
       gameMode === "foods";
@@ -901,6 +931,8 @@ function createCards() {
     card.addEventListener(
       "dragstart",
       (event) => {
+        selectCard();
+
         event.dataTransfer.effectAllowed =
           "move";
 
@@ -1235,6 +1267,10 @@ function placeCorrect(
 
   matchingCard?.remove();
 
+  if (selectedCard?.id === region.id) {
+    selectedCard = null;
+  }
+
   correctCount += 1;
 
   updateProgress();
@@ -1460,12 +1496,23 @@ function updateCompletionText() {
 function resetGame() {
   correctCount = 0;
   selectedZone = null;
+  selectedCard = null;
 
   completionMessage.hidden = true;
 
   document.querySelector(
     "#cultureBox"
   ).hidden = true;
+
+  const tourismSection = document.querySelector(
+    "#tourismLinkSection"
+  );
+
+  if (tourismSection) {
+    tourismSection.hidden = true;
+  }
+
+  closeHintModal(false);
 
   createCards();
   createZones();
@@ -1748,3 +1795,150 @@ document.addEventListener(
     }
   }
 );
+
+/* ========================================
+   HINT POPUP
+   ======================================== */
+
+const regionHints = {
+  "Valle d'Aosta": {
+    italian: "Confina con il Piemonte e si trova tra la Francia e la Svizzera.",
+    english: "It borders Piedmont and lies between France and Switzerland."
+  },
+  Piemonte: {
+    italian: "Si trova nel nord-ovest e confina con la Valle d'Aosta, la Lombardia e la Liguria.",
+    english: "It is in northwestern Italy and borders Aosta Valley, Lombardy, and Liguria."
+  },
+  Liguria: {
+    italian: "È una regione costiera stretta nel nord-ovest, sotto il Piemonte.",
+    english: "It is a narrow coastal region in northwestern Italy, below Piedmont."
+  },
+  Lombardia: {
+    italian: "Si trova nel nord, tra il Piemonte e il Veneto.",
+    english: "It is in northern Italy, between Piedmont and Veneto."
+  },
+  "Trentino-Alto Adige": {
+    italian: "Si trova nell'estremo nord, vicino all'Austria.",
+    english: "It is in the far north, near Austria."
+  },
+  Veneto: {
+    italian: "Si trova nel nord-est, tra la Lombardia e il Friuli-Venezia Giulia.",
+    english: "It is in northeastern Italy, between Lombardy and Friuli-Venezia Giulia."
+  },
+  "Friuli-Venezia Giulia": {
+    italian: "Si trova nell'estremo nord-est, vicino all'Austria e alla Slovenia.",
+    english: "It is in the far northeast, near Austria and Slovenia."
+  },
+  "Emilia-Romagna": {
+    italian: "Attraversa il nord dell'Italia, sotto la Lombardia e il Veneto.",
+    english: "It stretches across northern Italy, below Lombardy and Veneto."
+  },
+  Toscana: {
+    italian: "Si trova nell'Italia centrale, sulla costa occidentale.",
+    english: "It is in central Italy on the western coast."
+  },
+  Umbria: {
+    italian: "È una regione dell'Italia centrale senza sbocco sul mare.",
+    english: "It is a landlocked region in central Italy."
+  },
+  Marche: {
+    italian: "Si trova nell'Italia centrale, sulla costa adriatica.",
+    english: "It is in central Italy on the Adriatic coast."
+  },
+  Lazio: {
+    italian: "Si trova nell'Italia centrale, sulla costa occidentale, sotto la Toscana.",
+    english: "It is in central Italy on the western coast, below Tuscany."
+  },
+  Abruzzo: {
+    italian: "Si trova a est del Lazio, sulla costa adriatica.",
+    english: "It is east of Lazio on the Adriatic coast."
+  },
+  Molise: {
+    italian: "È una piccola regione tra l'Abruzzo, la Campania e la Puglia.",
+    english: "It is a small region between Abruzzo, Campania, and Apulia."
+  },
+  Campania: {
+    italian: "Si trova nell'Italia meridionale, sulla costa occidentale.",
+    english: "It is in southern Italy on the western coast."
+  },
+  Puglia: {
+    italian: "Forma il tacco dello stivale italiano.",
+    english: "It forms the heel of the Italian boot."
+  },
+  Basilicata: {
+    italian: "Si trova tra la Campania, la Puglia e la Calabria.",
+    english: "It lies between Campania, Apulia, and Calabria."
+  },
+  Calabria: {
+    italian: "Forma la punta dello stivale italiano.",
+    english: "It forms the toe of the Italian boot."
+  },
+  Sicilia: {
+    italian: "È la grande isola vicino alla punta dello stivale.",
+    english: "It is the large island near the toe of the boot."
+  },
+  Sardegna: {
+    italian: "È l'isola a ovest della penisola italiana.",
+    english: "It is the island west of the Italian peninsula."
+  }
+};
+
+function showHint() {
+  if (!selectedCard) {
+    hintItalian.textContent = "Scegli prima una carta.";
+    hintEnglish.textContent = "Choose a card first.";
+  } else if (gameMode === "foods") {
+    hintItalian.textContent =
+      `Questa specialità viene dalla regione ${selectedCard.region}.`;
+
+    hintEnglish.textContent =
+      `This specialty comes from ${getEnglishRegionName(selectedCard.region)}.`;
+  } else if (gameMode === "landmarks") {
+    hintItalian.textContent =
+      `Questo monumento si trova nella regione ${selectedCard.region}.`;
+
+    hintEnglish.textContent =
+      `This landmark is located in ${getEnglishRegionName(selectedCard.region)}.`;
+  } else {
+    const hint = regionHints[selectedCard.region];
+
+    hintItalian.textContent = hint?.italian ||
+      "Osserva attentamente la posizione della regione sulla mappa.";
+
+    hintEnglish.textContent = hint?.english ||
+      "Look carefully at the region's position on the map.";
+  }
+
+  hintModal.hidden = false;
+  document.body.classList.add("hint-modal-open");
+  closeHintModalButton.focus();
+}
+
+function closeHintModal(returnFocus = true) {
+  if (!hintModal || hintModal.hidden) {
+    return;
+  }
+
+  hintModal.hidden = true;
+  document.body.classList.remove("hint-modal-open");
+
+  if (returnFocus) {
+    hintButton.focus();
+  }
+}
+
+hintButton.addEventListener("click", showHint);
+closeHintModalButton.addEventListener("click", () => closeHintModal());
+
+hintModal.addEventListener("click", (event) => {
+  if (event.target === hintModal) {
+    closeHintModal();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !hintModal.hidden) {
+    closeHintModal();
+  }
+});
+

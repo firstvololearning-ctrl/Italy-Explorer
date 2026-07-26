@@ -2744,3 +2744,128 @@ transform: scale(1);
     white-space: normal !important;
   }
 }
+
+/* =========================================================
+   HINT SELECTION + POPUP
+   ========================================================= */
+
+.region-card.selected-card {
+  outline: 4px solid #e6b84f;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(128, 89, 54, 0.2);
+}
+
+.region-card:focus-visible {
+  outline: 3px solid #274b84;
+  outline-offset: 2px;
+}
+
+.hint-button {
+  background: #274b84 !important;
+}
+
+.hint-button:hover,
+.hint-button:focus-visible {
+  background: #1e3d6d !important;
+}
+
+.hint-modal[hidden] {
+  display: none !important;
+}
+
+.hint-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(38, 34, 28, 0.58);
+}
+
+.hint-modal-card {
+  position: relative;
+  width: min(440px, 92vw);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 28px;
+  border: 3px solid #e4bd63;
+  border-radius: 22px;
+  background: #fffaf0;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.hint-modal-card h2 {
+  margin: 0 42px 18px;
+  color: #7d542b;
+}
+
+.hint-modal-card h2 span {
+  display: block;
+  margin-top: 3px;
+  color: #777065;
+  font-size: 0.65em;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.hint-modal-card p {
+  margin: 10px 0;
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+#hintItalian {
+  color: #6f4824;
+  font-weight: 700;
+}
+
+.hint-english {
+  color: #706b63;
+  font-style: italic;
+}
+
+.hint-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #6f4824;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hint-modal-close:hover,
+.hint-modal-close:focus-visible {
+  background: rgba(128, 89, 54, 0.1);
+  outline: 3px solid rgba(128, 89, 54, 0.18);
+}
+
+body.hint-modal-open {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .hint-modal {
+    padding: 10px;
+  }
+
+  .hint-modal-card {
+    width: 100%;
+    max-height: calc(100vh - 20px);
+    padding: 24px 18px;
+    border-radius: 17px;
+  }
+}
+
