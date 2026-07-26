@@ -143,14 +143,19 @@ button {
 }
 
 .mode-button:hover {
-  background: #f3ede2;
+  background: #eef4ff;
+  border-color: #2A5CAA;
   transform: translateY(-1px);
 }
 
 .mode-button.active {
-  border-color: #805936;
-  background: #805936;
-  color: white;
+  background: #2A5CAA;
+  border-color: #2A5CAA;
+  color: #fff;
+}
+.mode-button.active .english-support {
+  color: rgba(255,255,255,.92);
+  opacity: 1;
 }
 .mode-button {
   display: flex;
