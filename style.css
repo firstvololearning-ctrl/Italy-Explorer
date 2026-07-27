@@ -2207,23 +2207,26 @@ transform: scale(1);
   box-shadow:0 18px 55px rgba(0,0,0,.3);
 }
 
-.about-close{
-  position:absolute;
-  top:14px;
-  right:14px;
+.about-close {
+  position: sticky;
+  top: 14px;
+  z-index: 10;
 
-  width:42px;
-  height:42px;
+  display: block;
+  margin-left: auto;
+  margin-bottom: -42px;
 
-  border:none;
-  border-radius:50%;
+  width: 42px;
+  height: 42px;
 
-  background:#edf2f8;
+  border: none;
+  border-radius: 50%;
+  background: #edf2f8;
 
-  font-size:2rem;
-  color:#274b84;
+  font-size: 2rem;
+  color: #274b84;
 
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .about-card h2{
@@ -2254,7 +2257,6 @@ transform: scale(1);
   color:#274b84;
   font-weight:700;
 }
-
 /* ==================================================
    EXPLORE ITALY — FINAL MOBILE OVERRIDES
    Keep this at the very bottom of style.css
