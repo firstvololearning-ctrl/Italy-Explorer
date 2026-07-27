@@ -253,23 +253,25 @@ const italyData = [
     y: 51.6
   },
   {
-    id: "campania",
-    region: "Campania",
-    capital: "Napoli",
-    food: {
-      name: "Pizza napoletana",
-      image: "assets/foods/regionalfood-03.png"
-    },
-    landmark: {
-      name: "Vesuvio",
-      image: "assets/landmarks/landmark-19.png"
-    },
-    language: "Neapolitan is widely spoken.",
-    highlight:
-      "🏺 Pompeii, Herculaneum, and Oplontis are home to some of the world's best-preserved ancient Roman ruins.",
-    x: 68.8,
-    y: 59.2
+  id: "campania",
+  region: "Campania",
+  capital: "Napoli",
+  food: {
+    name: "Pizza napoletana",
+    image: "assets/foods/regionalfood-03.png"
   },
+
+  landmark: {
+    name: "Pompeii",
+    image: "assets/landmarks/landmark-02.png"
+  },
+
+  language: "Neapolitan is widely spoken.",
+  highlight:
+    "🏺 Pompeii, Herculaneum, and Oplontis are home to some of the world's best-preserved ancient Roman ruins.",
+  x: 68.8,
+  y: 59.2
+},
   {
     id: "puglia",
     region: "Puglia",

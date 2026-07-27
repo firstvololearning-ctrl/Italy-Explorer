@@ -60,10 +60,16 @@ function getEnglishRegionName(italianName) {
 
 const additionalLandmarks = [
   {
-    id: "campania-amalfi-coast",
+    id: "campania-costiera-amalfitana",
     region: "Campania",
-    name: "Amalfi Coast",
+    name: "Costiera Amalfitana",
     image: "assets/landmarks/landmark-28.png"
+  },
+  {
+    id: "campania-vesuvio",
+    region: "Campania",
+    name: "Vesuvio",
+    image: "assets/landmarks/landmark-19.png"
   },
   {
     id: "sardegna-cala-goloritze",
@@ -84,7 +90,7 @@ const additionalLandmarks = [
     image: "assets/landmarks/landmark-31.png"
   },
   {
-    id: "valle-aosta-gran-paradiso",
+    id: "valle-daosta-gran-paradiso",
     region: "Valle d'Aosta",
     name: "Gran Paradiso",
     image: "assets/landmarks/landmark-32.png"
@@ -96,11 +102,47 @@ const additionalLandmarks = [
     image: "assets/landmarks/landmark-33.png"
   },
   {
-    id: "emilia-romagna-po-delta",
-    region: "Emilia-Romagna",
-    name: "Po Delta",
+    id: "veneto-delta-del-po",
+    region: "Veneto",
+    name: "Delta del Po",
     image: "assets/landmarks/landmark-34.png"
-  }
+  },
+  {
+  id: "veneto-ponte-di-rialto",
+  region: "Veneto",
+  name: "Ponte di Rialto",
+  image: "assets/landmarks/landmark-18.png"
+},
+  {
+    id: "emilia-romagna-delta-del-po",
+    region: "Emilia-Romagna",
+    name: "Delta del Po",
+    image: "assets/landmarks/landmark-34.png"
+  },
+  {
+  id: "toscana-torre-di-pisa",
+  region: "Toscana",
+  name: "Torre di Pisa",
+  image: "assets/landmarks/landmark-03.png"
+},
+{
+  id: "sicilia-valle-dei-templi",
+  region: "Sicilia",
+  name: "Valle dei Templi",
+  image: "assets/landmarks/landmark-13.png"
+},
+{
+  id: "lazio-fontana-di-trevi",
+  region: "Lazio",
+  name: "Fontana di Trevi",
+  image: "assets/landmarks/landmark-35.png"
+},
+{
+  id: "lazio-pantheon",
+  region: "Lazio",
+  name: "Pantheon",
+  image: "assets/landmarks/landmark-36.png"
+},
 ];
 
 function getRegionByName(regionName) {
@@ -1782,7 +1824,10 @@ function setGameMode(mode) {
     "music-mode",
     musicMode
   );
-
+mapBoard.classList.toggle(
+  "landmarks-mode",
+  mode === "landmarks"
+);
   switch (mode) {
     case "landmarks":
   panelHeading.innerHTML = `
@@ -2279,12 +2324,25 @@ function showHint() {
     hintEnglish.textContent =
       `This specialty comes from ${getEnglishRegionName(selectedCard.region)}.`;
   } else if (gameMode === "landmarks") {
+
+  if (
+    selectedCard.id === "veneto-delta-del-po" ||
+    selectedCard.id === "emilia-romagna-delta-del-po"
+  ) {
     hintItalian.textContent =
-        `Questo luogo si trova nella regione ${selectedCard.region}.`;
+      "Questo luogo si trova nelle regioni Veneto ed Emilia-Romagna.";
 
     hintEnglish.textContent =
-      `This landmark or landscape is located in ${getEnglishRegionName(selectedCard.region)}.`;
+      "This place is located in Veneto and Emilia-Romagna.";
   } else {
+    hintItalian.textContent =
+      `Questo luogo si trova nella regione ${selectedCard.region}.`;
+
+    hintEnglish.textContent =
+      `This place is located in ${getEnglishRegionName(selectedCard.region)}.`;
+  }
+
+} else {
     const hint = regionHints[selectedCard.region];
 
     hintItalian.textContent = hint?.italian ||

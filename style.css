@@ -241,7 +241,11 @@ button {
     border-color 0.2s ease,
     transform 0.2s ease;
 }
+/* Larger targets for Landmark mode */
 
+.map-board.landmarks-mode .drop-zone {
+  width: 12.5%;
+}
 .drop-zone.drag-over {
   border-color: #315f45;
   background: rgba(89, 147, 107, 0.24);
@@ -271,29 +275,29 @@ button {
   text-align: center;
   pointer-events: none;
 }
-
 .drop-zone.correct {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
-  gap: 2px;
+  align-items: center;
+  gap: 3px;
 }
 
 .placed-landmark {
   position: static;
   transform: none;
-  pointer-events: none;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .placed-landmark:first-child {
-  width: 60%;
-  flex-basis: 100%;
+  flex: 0 0 100%;
+  width: 68%;
 }
 
 .placed-landmark:not(:first-child) {
-  width: 28%;
+  width: 44%;
+  margin-top: -14px;
 }
 
 /* =========================
