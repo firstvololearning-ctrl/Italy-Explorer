@@ -2606,24 +2606,20 @@ transform: scale(1);
    LEONARDO DA VINCI QUOTE
 ========================================================= */
 
-/* ---------- Desktop ---------- */
-
 .leonardo-quote {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1fr);
+  grid-template-columns: 120px minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
+  gap: 22px;
 
-  width: calc(100% - 24px);
-  max-width: none;
-  margin: 10px auto 14px;
-  padding: 10px 16px;
+  width: min(1080px, calc(100% - 48px));
+  margin: 16px auto 20px;
+  padding: 18px 24px;
   box-sizing: border-box;
 
   background: #faf8f2;
-
   border: 1px solid rgba(39, 75, 132, 0.22);
-  border-radius: 16px;
+  border-radius: 18px;
 
   box-shadow:
     0 8px 20px rgba(39, 75, 132, 0.08),
@@ -2631,59 +2627,55 @@ transform: scale(1);
 }
 
 .leonardo-quote-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  min-width: 0;
+  display: grid;
+  place-items: center;
+  width: 120px;
 }
 
 .leonardo-quote-image img {
   display: block;
-  width: 85px;
-  max-width: 85px;
-  height: auto;
+  width: 115px;
+  height: 115px;
   object-fit: contain;
 }
 
 .leonardo-quote-text {
-  width: 100%;
   min-width: 0;
+  margin: 0;
 }
 
 .leonardo-quote-italian,
 .leonardo-quote-english {
-  margin: 0;
   color: #1f2835;
 }
 
 .leonardo-quote-italian {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
+  margin: 0;
+  font-size: clamp(1rem, 1.55vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 .leonardo-quote-english {
-  margin-top: 5px;
-  font-size: 14px;
-  line-height: 1.25;
+  margin: 7px 0 0;
+  font-size: clamp(0.92rem, 1.35vw, 1.15rem);
+  line-height: 1.35;
 }
 
 .leonardo-quote-source {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  margin-top: 5px;
+  gap: 3px;
+  margin-top: 8px;
+
   color: #27364b;
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 0.92rem;
+  line-height: 1.3;
 }
 
 .leonardo-quote-source cite {
   color: #173158;
-  font-size: 13px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 800;
 }
@@ -2692,80 +2684,81 @@ transform: scale(1);
   white-space: nowrap;
 }
 
-
 /* ---------- Tablet ---------- */
 
 @media (max-width: 900px) {
-
   .leonardo-quote {
-    grid-template-columns: 75px minmax(0, 1fr);
-    gap: 10px;
-    padding: 9px 11px;
+    grid-template-columns: 90px minmax(0, 1fr);
+    gap: 14px;
+
+    width: min(760px, calc(100% - 32px));
+    margin: 12px auto 16px;
+    padding: 14px 16px;
   }
 
   .leonardo-quote-image {
-    width: 75px;
+    width: 90px;
   }
 
   .leonardo-quote-image img {
-    width: 70px;
-    max-width: 70px;
+    width: 85px;
+    height: 85px;
   }
 
   .leonardo-quote-italian {
-    font-size: 12px;
-    white-space: normal;
+    font-size: 0.98rem;
   }
 
   .leonardo-quote-english {
-    font-size: 11px;
+    font-size: 0.88rem;
   }
 
   .leonardo-quote-source,
   .leonardo-quote-source cite {
-    font-size: 10px;
+    font-size: 0.82rem;
   }
 }
-
 
 /* ---------- Mobile ---------- */
 
 @media (max-width: 600px) {
-
   .leonardo-quote {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 8px;
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 10px;
 
-    width: calc(100% - 12px);
-    margin: 6px auto 10px;
-    padding: 7px;
-
-    border-radius: 12px;
+    width: calc(100% - 16px);
+    margin: 8px auto 12px;
+    padding: 10px;
+    border-radius: 14px;
   }
 
   .leonardo-quote-image {
-    width: 58px;
+    width: 68px;
   }
 
   .leonardo-quote-image img {
-    width: 55px;
-    max-width: 55px;
+    width: 64px;
+    height: 64px;
   }
 
   .leonardo-quote-italian {
-    font-size: 9.5px;
-    white-space: normal;
+    font-size: 0.78rem;
+    line-height: 1.25;
   }
 
   .leonardo-quote-english {
-    margin-top: 3px;
-    font-size: 8.5px;
+    margin-top: 4px;
+    font-size: 0.7rem;
+    line-height: 1.25;
   }
 
-  .leonardo-quote-source,
+  .leonardo-quote-source {
+    margin-top: 5px;
+    font-size: 0.64rem;
+  }
+
   .leonardo-quote-source cite {
-    margin-top: 3px;
-    font-size: 8px;
+    font-size: 0.7rem;
   }
 
   .richter-reference {
@@ -2929,4 +2922,53 @@ body.hint-modal-open {
 
 .card-audio-button:active {
   transform: scale(0.96);
+}
+/* ========================================
+   REGIONAL SPOTLIGHT AUDIO
+   ======================================== */
+
+.culture-audio-button {
+  display: inline-grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+  margin-left: 10px;
+
+  border: 0;
+  border-radius: 50%;
+
+  color: #274b84;
+  background: #fffaf3;
+
+  font-size: 1rem;
+  vertical-align: middle;
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 8px rgba(36, 57, 87, 0.14);
+}
+
+.culture-audio-button:hover,
+.culture-audio-button:focus-visible {
+  transform: scale(1.07);
+  outline: 3px solid rgba(39, 75, 132, 0.18);
+}
+.about-creator-logo {
+  display: block;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+.about-english {
+  margin-top: -4px;
+  color: #66758d;
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+.about-creator-closing .about-english {
+  display: block;
+  margin-top: 4px;
 }

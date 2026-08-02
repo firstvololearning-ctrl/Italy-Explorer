@@ -1838,7 +1838,38 @@ function showRegionalSpotlight(
     document.querySelector(
       "#cultureRegion"
     );
+let cultureAudioButton =
+  document.querySelector(
+    "#cultureAudioButton"
+  );
 
+if (!cultureAudioButton) {
+  cultureAudioButton =
+    document.createElement("button");
+
+  cultureAudioButton.type = "button";
+  cultureAudioButton.id =
+    "cultureAudioButton";
+
+  cultureAudioButton.className =
+    "culture-audio-button";
+
+  cultureAudioButton.textContent = "🔊";
+
+  cultureRegion.insertAdjacentElement(
+    "afterend",
+    cultureAudioButton
+  );
+}
+
+cultureAudioButton.setAttribute(
+  "aria-label",
+  `Ascolta ${region.region}`
+);
+
+cultureAudioButton.onclick = () => {
+  speakItalian(region.region);
+};
   const cultureHighlight =
     document.querySelector(
       "#cultureHighlight"
