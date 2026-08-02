@@ -2896,3 +2896,37 @@ body.hint-modal-open {
   }
 }
 
+
+/* ========================================
+   CARD AUDIO BUTTON
+   ======================================== */
+
+.card-audio-button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin: 8px auto 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  color: #274b84;
+  background: #fffaf3;
+
+  font-size: 1.05rem;
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 8px rgba(36, 57, 87, 0.14);
+}
+
+.card-audio-button:hover,
+.card-audio-button:focus-visible {
+  transform: scale(1.07);
+  outline: 3px solid rgba(39, 75, 132, 0.18);
+}
+
+.card-audio-button:active {
+  transform: scale(0.96);
+}

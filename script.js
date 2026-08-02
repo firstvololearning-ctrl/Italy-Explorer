@@ -1,4 +1,31 @@
 "use strict";
+function speakItalian(text) {
+  if (!("speechSynthesis" in window)) {
+    alert("Audio is not supported in this browser.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance =
+    new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "it-IT";
+  utterance.rate = 0.82;
+
+  const italianVoice =
+    window.speechSynthesis
+      .getVoices()
+      .find(voice =>
+        voice.lang.toLowerCase().startsWith("it")
+      );
+
+  if (italianVoice) {
+    utterance.voice = italianVoice;
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
 
 const DEBUG_ZONES = false;
 const DEVELOPER_MODE = false;
@@ -1055,13 +1082,45 @@ function createCards() {
       image.alt = item.name;
       image.draggable = false;
 
-      const label =
-        document.createElement("span");
+const label =
+  document.createElement("span");
 
-      label.className = "card-label";
-      label.textContent = item.name;
+label.className = "card-label";
+label.textContent = item.name;
 
-      card.append(image, label);
+const audioButton =
+  document.createElement("button");
+
+audioButton.type = "button";
+audioButton.className = "card-audio-button";
+audioButton.textContent = "🔊";
+
+audioButton.setAttribute(
+  "aria-label",
+  `Ascolta ${item.name}`
+);
+
+audioButton.addEventListener(
+  "click",
+  event => {
+    event.stopPropagation();
+
+    speakItalian(item.name);
+  }
+);
+
+audioButton.addEventListener(
+  "pointerdown",
+  event => {
+    event.stopPropagation();
+  }
+);
+
+card.append(
+  image,
+  label,
+  audioButton
+);
 
       card.addEventListener(
         "dragstart",
@@ -1167,12 +1226,44 @@ function createCards() {
       image.draggable = false;
 
       const label =
-        document.createElement("span");
+  document.createElement("span");
 
-      label.className = "card-label";
-      label.textContent = item.name;
+label.className = "card-label";
+label.textContent = item.name;
 
-      card.append(image, label);
+const audioButton =
+  document.createElement("button");
+
+audioButton.type = "button";
+audioButton.className = "card-audio-button";
+audioButton.textContent = "🔊";
+
+audioButton.setAttribute(
+  "aria-label",
+  `Ascolta ${item.name}`
+);
+
+audioButton.addEventListener(
+  "click",
+  event => {
+    event.stopPropagation();
+
+    speakItalian(item.name);
+  }
+);
+
+audioButton.addEventListener(
+  "pointerdown",
+  event => {
+    event.stopPropagation();
+  }
+);
+
+card.append(
+  image,
+  label,
+  audioButton
+);
     } else {
       const italianName =
         document.createElement("strong");
@@ -1198,10 +1289,39 @@ function createCards() {
         "bilingual-region-card"
       );
 
-      card.append(
-        italianName,
-        englishName
-      );
+      const audioButton =
+  document.createElement("button");
+
+audioButton.type = "button";
+audioButton.className = "card-audio-button";
+audioButton.textContent = "🔊";
+
+audioButton.setAttribute(
+  "aria-label",
+  `Ascolta ${region.region}`
+);
+
+audioButton.addEventListener(
+  "click",
+  event => {
+    event.stopPropagation();
+
+    speakItalian(region.region);
+  }
+);
+
+audioButton.addEventListener(
+  "pointerdown",
+  event => {
+    event.stopPropagation();
+  }
+);
+
+card.append(
+  italianName,
+  englishName,
+  audioButton
+);
     }
 
     card.addEventListener(
