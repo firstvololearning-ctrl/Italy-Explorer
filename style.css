@@ -2972,3 +2972,66 @@ body.hint-modal-open {
   display: block;
   margin-top: 4px;
 }
+.product-family-subtitle {
+  margin: 18px 0 10px;
+  color: #52657f;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.product-family-subtitle span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.companion-site-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  width: auto;
+  min-height: 0;
+  margin: 8px auto 18px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+
+  color: #274b84;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.companion-site-link span {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.companion-site-link:hover,
+.companion-site-link:focus-visible {
+  color: #1e3d6d;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .companion-site-link {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
