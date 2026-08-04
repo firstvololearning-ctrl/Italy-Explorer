@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Galleria di immagini · Image Gallery | Italy Explorer
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="gallery.css"
+  >
+</head>
+
+<body>
+
+  <header class="gallery-header">
+
+    <a
+      class="back-link"
+      href="index.html"
+    >
+      ← Torna a Italy Explorer · Back to Italy Explorer
+    </a>
+
+    <div class="gallery-brand">
+      <img
+        src="icons/logo.png"
+        alt="First Volo Learning"
+        class="gallery-logo"
+      >
+
+      <div>
+        <strong>
+          First Volo Learning
+        </strong>
+
+        <span>
+          Italy Explorer
+        </span>
+      </div>
+    </div>
+
+    <h1>
+      🖼️ Galleria di immagini
+    </h1>
+
+    <p class="gallery-subtitle">
+      <strong>
+        Monumenti, paesaggi e specialità regionali d’Italia
+      </strong>
+
+      <span>
+        Landmarks, landscapes, and regional specialties
+        of Italy
+      </span>
+    </p>
+
+  </header>
+
+  <main class="gallery-page">
+
+    <section
+      class="gallery-controls"
+      aria-label="Gallery filters"
+    >
+
+      <div class="gallery-search-group">
+        <label for="gallerySearch">
+          Cerca
+
+          <span>
+            Search
+          </span>
+        </label>
+
+        <input
+          type="search"
+          id="gallerySearch"
+          placeholder="Cerca un luogo, un cibo o una regione..."
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="gallery-filter-group">
+
+        <span class="filter-heading">
+          Mostra
+
+          <small>
+            Show
+          </small>
+        </span>
+
+        <div
+          class="gallery-filter-buttons"
+          role="group"
+          aria-label="Filter image category"
+        >
+
+          <button
+            type="button"
+            class="gallery-filter-button active"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            Tutto
+            <span>All</span>
+          </button>
+
+          <button
+            type="button"
+            class="gallery-filter-button"
+            data-filter="landmarks"
+            aria-pressed="false"
+          >
+            🏛️ Monumenti e paesaggi
+            <span>Landmarks &amp; Landscapes</span>
+          </button>
+
+          <button
+            type="button"
+            class="gallery-filter-button"
+            data-filter="foods"
+            aria-pressed="false"
+          >
+            🍝 Specialità regionali
+            <span>Regional Specialties</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="gallery-region-group">
+
+        <label for="galleryRegion">
+          Regione
+
+          <span>
+            Region
+          </span>
+        </label>
+
+        <select id="galleryRegion">
+          <option value="all">
+            Tutte le regioni · All Regions
+          </option>
+        </select>
+
+      </div>
+
+      <p
+        id="galleryCount"
+        class="gallery-count"
+        aria-live="polite"
+      ></p>
+
+    </section>
+
+    <section
+      id="galleryGrid"
+      class="gallery-grid"
+      aria-label="Italy image gallery"
+    ></section>
+
+    <div
+      id="galleryEmpty"
+      class="gallery-empty"
+      hidden
+    >
+      <strong>
+        Nessuna immagine trovata.
+      </strong>
+
+      <span>
+        No images found.
+      </span>
+    </div>
+
+  </main>
+
+  <footer class="gallery-footer">
+    <p>
+      © 2026 Alexis Sacco / First Volo Learning.
+      All rights reserved.
+    </p>
+  </footer>
+
+  <script src="data/italy-data.js"></script>
+  <script src="gallery.js"></script>
+
+</body>
+</html>
